@@ -15,7 +15,7 @@ import models
 import torch
 
 # audioset input sequence length is 1024
-pretrained_mdl_path = '../../pretrained_models/audioset_10_10_0.4593.pth'
+pretrained_mdl_path = 'pretrained_models/audioset_10_10_0.4593.pth'
 # get the frequency and time stride of the pretrained model from its name
 fstride, tstride = int(pretrained_mdl_path.split('/')[-1].split('_')[1]), int(pretrained_mdl_path.split('/')[-1].split('_')[2].split('.')[0])
 # The input of audioset pretrained model is 1024 frames.
