@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time    : 6/10/21 5:04 PM
-# @Author  : Yuan Gong
-# @Affiliation  : Massachusetts Institute of Technology
-# @Email   : yuangong@mit.edu
-# @File    : ast_models.py
-
 import torch
 import torch.nn as nn
 from torch.cuda.amp import autocast
@@ -196,9 +189,10 @@ if __name__ == '__main__':
     print(test_output.shape)
 
     input_tdim = 256
-    ast_mdl = ASTModel(input_tdim=input_tdim,label_dim=50, audioset_pretrain=True)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    ast_mdl = ASTModel(input_tdim=input_tdim,label_dim=50, audioset_pretrain=True).to(device)
     # input a batch of 10 spectrogram, each with 512 time frames and 128 frequency bins
-    test_input = torch.rand([10, input_tdim, 128])
+    test_input = torch.rand([10, input_tdim, 128]).to(device)
     test_output = ast_mdl(test_input)
     # output should be in shape [10, 50], i.e., 10 samples, each with prediction of 50 classes.
     print(test_output.shape)

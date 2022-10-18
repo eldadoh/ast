@@ -24,3 +24,4 @@ test_input = torch.rand([10, input_tdim, 128])
 test_output = audio_model(test_input)
 # output should be in shape [10, 527], i.e., 10 samples, each with prediction of 527 classes.
 print(test_output.shape)
+print('x')
