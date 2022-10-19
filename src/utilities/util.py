@@ -6,6 +6,8 @@ import torch.nn as nn
 import random
 from collections import namedtuple
 
+import os, wget
+
 def calc_recalls(S):
     """
     Computes recall at 1, 5, and 10 given a similarity matrix S.
@@ -304,3 +306,10 @@ PrenetConfig = namedtuple(
 RNNConfig = namedtuple(
   'RNNConfig',
   ['input_size', 'hidden_size', 'num_layers', 'dropout', 'residual'])
+
+
+
+def get_model_checkpoint():
+  audioset_mdl_url = 'https://www.dropbox.com/s/cv4knew8mvbrnvq/audioset_0.4593.pth?dl=1'
+  if os.path.exists('pretrained_models/audio_mdl.pth') == False:
+    wget.download(audioset_mdl_url, out='pretrained_models/audio_mdl.pth')
